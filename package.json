@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/js-quiz/js-quiz-utils#readme",
   "dependencies": {
+    "firebase-admin": "^5.12.1",
+    "firebase-functions": "^1.0.3",
     "firebase-tools": "^3.18.5",
     "recursive-readdir": "^2.2.2"
   },
