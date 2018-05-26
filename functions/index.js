@@ -7,8 +7,9 @@ const cors = require('cors')({
 // Create and Deploy Your First Cloud Functions
 // https://firebase.google.com/docs/functions/write-firebase-functions
 
-exports.isCorrectAnswer = functions.https.onRequest((request, response) => {
-  return cors(request, response, () => {
-    response.send("false");
-  });
-});
+exports.isCorrectAnswer = functions.https.onRequest(
+  (request, response) => cors(request, response, () => {
+    const random_boolean = Math.random() >= 0.5;
+    response.send(random_boolean);
+  })
+);
