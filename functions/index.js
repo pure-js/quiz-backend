@@ -1,15 +1,20 @@
 const functions = require('firebase-functions');
-// CORS Express middleware to enable CORS Requests.
-const cors = require('cors')({
-  origin: true,
-});
 
 // Create and Deploy Your First Cloud Functions
 // https://firebase.google.com/docs/functions/write-firebase-functions
 
-exports.isCorrectAnswer = functions.https.onRequest(
-  (request, response) => cors(request, response, () => {
+// exports.questions = functions.database.collection(collection).get()
+//   .then((querySnapshot) => {
+//     querySnapshot.forEach((doc) => {
+//       documentsIds.push(doc.id);
+//     });
+//   });
+
+exports.isCorrectAnswer = functions.https.onCall(
+  (data, context) => {
     const random_boolean = Math.random() >= 0.5;
-    response.send(random_boolean);
-  })
+    return {
+      'correct': random_boolean
+    }
+  }
 );
