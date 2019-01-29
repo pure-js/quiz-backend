@@ -10,10 +10,10 @@ const floatToInteger = (max, float) => Math.floor(float * (max + 1));
 exports.randomQuestion = functions.https.onCall(
   (collection, context) => {
     return admin.firestore().collection(collection).get()
-      .then(querySnapshot => {
+      .then((querySnapshot) => {
         const rand = floatToInteger(querySnapshot.size, Math.random());
-        const docIds = querySnapshot.docs.map(doc => doc.id);
-        return querySnapshot.docs[rand - 1].data();
+        const doc = querySnapshot.docs[rand - 1];
+        return Object.assign({id: doc.id}, doc.data());
       });
   }
 );
